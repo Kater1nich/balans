@@ -5,55 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Баланс">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0c0d0e" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0b0c0f">
 <meta name="format-detection" content="telephone=no">
 <title>Баланс</title>
-<link rel="apple-touch-icon" href="data:image/png;base64,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">
-<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
 <style>
+/* Приложение сознательно одно-темовое: тёмный финтех.
+   Светлой темы нет, поэтому каждый цвет задан явно и не зависит
+   от темы устройства — страница выглядит одинаково везде. */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
---bg:#fff;--card:#f7f8f9;--card2:#eef0f2;--tx:#111214;--mut:#8b8f96;--line:#e6e8eb;
---acc:#111214;--accfg:#fff;--red:#c8372d;--green:#0f7a52;
---fill:#f2f3f5;--bar:#eceef1;--tabbg:rgba(255,255,255,.88);
---redt:rgba(200,55,45,.10);--greent:rgba(15,122,82,.10);
+--bg:#0b0c0f;--surface:#15171c;--surface2:#1d2027;--line:#262a33;
+--tx:#f2f4f7;--mut:#7e8593;
+--acc:#c6f24e;--accfg:#0b0c0f;--acct:rgba(198,242,78,.13);
+--red:#ff6b6b;--redt:rgba(255,107,107,.13);
 --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
-color-scheme:light
-}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){
---bg:#0c0d0e;--card:#16181a;--card2:#1e2124;--tx:#f2f3f5;--mut:#8b8f96;--line:#26292d;
---acc:#f2f3f5;--accfg:#0c0d0e;--red:#ff6b60;--green:#3fcf8e;
---fill:#1a1d1f;--bar:#232629;--tabbg:rgba(12,13,14,.88);color-scheme:dark;
---redt:rgba(255,107,96,.15);--greent:rgba(63,207,142,.15);
-}}
-:root[data-theme=dark]{
---bg:#0c0d0e;--card:#16181a;--card2:#1e2124;--tx:#f2f3f5;--mut:#8b8f96;--line:#26292d;
---acc:#f2f3f5;--accfg:#0c0d0e;--red:#ff6b60;--green:#3fcf8e;
---fill:#1a1d1f;--bar:#232629;--tabbg:rgba(12,13,14,.88);color-scheme:dark;
---redt:rgba(255,107,96,.15);--greent:rgba(63,207,142,.15);
+color-scheme:dark
 }
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--tx);overscroll-behavior:none;
-font:400 17px/1.35 var(--f);
--webkit-user-select:none;user-select:none;-webkit-font-smoothing:antialiased}
+font:400 17px/1.35 var(--f);-webkit-user-select:none;user-select:none;
+-webkit-font-smoothing:antialiased}
 #app{display:flex;flex-direction:column;height:100dvh}
 main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
 padding:calc(10px + env(safe-area-inset-top)) 20px 28px}
 .tab{display:none}
 .tab.on{display:block;animation:fade .18s}
-
-/* Главный экран живёт без прокрутки: main перестаёт скроллиться,
-   вкладка растягивается на всю высоту, тянется только сетка категорий. */
-main.fixed{overflow:hidden;padding-bottom:0;display:flex;flex-direction:column}
-main.fixed .tab.on{flex:1;min-height:0;display:flex;flex-direction:column;animation:none}
 @keyframes fade{from{opacity:0}}
 
+/* Главный экран живёт без прокрутки: тянется только сетка категорий. */
+main.fixed{overflow:hidden;padding-bottom:0;display:flex;flex-direction:column}
+main.fixed .tab.on{flex:1;min-height:0;display:flex;flex-direction:column;animation:none}
+
 /* ---- нижняя панель ---- */
-nav{display:flex;background:var(--tabbg);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);flex:none}
+nav{display:flex;background:rgba(11,12,15,.92);-webkit-backdrop-filter:blur(20px);
+backdrop-filter:blur(20px);border-top:1px solid var(--line);
+padding-bottom:env(safe-area-inset-bottom);flex:none}
 nav button{flex:1;background:none;border:0;color:var(--mut);padding:9px 0 7px;
 display:flex;flex-direction:column;align-items:center;gap:4px;
 font:500 10px/1 var(--f);letter-spacing:.2px;transition:color .15s}
@@ -61,83 +51,117 @@ nav button svg{width:23px;height:23px}
 nav button.on{color:var(--acc)}
 
 /* ---- типографика ---- */
-h1{font:600 28px/1.15 var(--f);letter-spacing:-.5px;margin:6px 0 20px}
-.sec{font:500 12px/1 var(--f);color:var(--mut);text-transform:uppercase;
-letter-spacing:.8px;margin:26px 2px 10px}
+h1{font:300 34px/1.1 var(--f);letter-spacing:-1px;margin:6px 0 22px}
+.sec{font:500 11px/1 var(--f);color:var(--mut);text-transform:uppercase;
+letter-spacing:1px;margin:26px 2px 10px}
 .hint{font:400 13px/1.5 var(--f);color:var(--mut);padding:2px 2px 16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
-padding:12px 16px;margin-bottom:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;
+padding:14px 16px;margin-bottom:12px}
 
-/* ---- переключатель расход/доход: активная половина заливается
-       смысловым цветом, тем же, каким потом красится сумма ---- */
-.seg{display:flex;gap:4px;flex:none;border:1px solid var(--line);
-border-radius:12px;padding:3px;margin:2px 0 0}
-.seg button{flex:1;background:none;border:0;border-radius:9px;color:var(--mut);
+/* ---- герой месяца: крупный тонкий баланс ---- */
+.hero{padding:2px 2px 4px}
+.hero .big{font:300 56px/1 var(--f);letter-spacing:-3px;
+font-variant-numeric:tabular-nums;word-break:break-all}
+.hero .big.neg{color:var(--red)}
+.hero .cap{font:400 13px var(--f);color:var(--mut);margin-top:10px;letter-spacing:.2px}
+.chips{display:flex;gap:9px;margin-top:18px}
+.chip{flex:1;min-width:0;background:var(--surface);border:1px solid var(--line);
+border-radius:16px;padding:13px 14px}
+.chip span{display:block;font:500 10px/1 var(--f);color:var(--mut);
+text-transform:uppercase;letter-spacing:.9px;margin-bottom:8px}
+.chip b{font:500 18px/1 var(--f);letter-spacing:-.4px;
+font-variant-numeric:tabular-nums;display:block}
+.chip b.inc{color:var(--acc)}
+
+/* ---- стопка расходов вместо кольца ---- */
+.stack{display:flex;gap:2px;height:10px;margin:2px 0 18px;
+background:var(--surface2);border-radius:5px;overflow:hidden}
+.stack i{display:block;height:100%;min-width:3px;border-radius:2px}
+
+/* ---- переключатель расход/доход ---- */
+.seg{display:flex;gap:4px;flex:none;background:var(--surface);
+border:1px solid var(--line);border-radius:14px;padding:4px;margin:2px 0 0}
+.seg button{flex:1;background:none;border:0;border-radius:11px;color:var(--mut);
 font:500 14px/1 var(--f);padding:11px 0;letter-spacing:.1px;
-transition:background .15s,color .15s;display:flex;align-items:center;
-justify-content:center;gap:7px}
-.seg button::before{content:"";width:7px;height:7px;border-radius:50%;
-background:currentColor;opacity:.35;transition:opacity .15s}
-.seg button.on{font-weight:600}
-.seg button.on::before{opacity:1}
-.seg .sx.on{background:var(--redt);color:var(--red)}
-.seg .si.on{background:var(--greent);color:var(--green)}
+transition:background .15s,color .15s}
+.seg .sx.on{background:var(--surface2);color:var(--tx);font-weight:600}
+.seg .si.on{background:var(--acc);color:var(--accfg);font-weight:600}
 
-/* ---- сумма: обычное поле, по тапу открывает цифровую клавиатуру устройства ---- */
-.amtbox{flex:none;display:flex;align-items:baseline;justify-content:center;
-gap:9px;padding:26px 0 22px;position:relative}
+/* ---- сумма: обычное поле, по тапу открывает клавиатуру устройства ---- */
+/* auto-поля по вертикали: свободное место экрана достаётся сумме,
+   поэтому на большом телефоне число «дышит», а на маленьком поджимается. */
+.amtbox{flex:0 0 auto;margin:auto 0;display:flex;align-items:baseline;
+justify-content:center;gap:10px;padding:24px 0;position:relative}
 #a-amt{background:none;border:0;box-shadow:none;border-radius:0;padding:0;
 width:auto;min-width:2ch;text-align:center;caret-color:var(--acc);
-font:600 46px/1.15 var(--f);letter-spacing:-2px;color:var(--tx);
+font:300 54px/1.1 var(--f);letter-spacing:-3px;color:var(--tx);
 font-variant-numeric:tabular-nums}
 #a-amt:focus{outline:none}
 #a-amt::placeholder{color:var(--mut);opacity:1}
-.amtbox.exp #a-amt{color:var(--red)}
-.amtbox.inc #a-amt{color:var(--green)}
+.amtbox.inc #a-amt{color:var(--acc)}
 .amtbox .cur{font:400 22px var(--f);color:var(--mut);flex:none}
 .done{position:absolute;right:0;top:50%;transform:translateY(-50%);
-background:var(--fill);border:0;border-radius:8px;color:var(--tx);
-font:500 13px var(--f);padding:8px 12px;visibility:hidden}
+background:var(--surface2);border:0;border-radius:10px;color:var(--tx);
+font:500 13px var(--f);padding:9px 13px;visibility:hidden}
 .amtbox:focus-within .done{visibility:visible}
 
 /* ---- строка даты и заметки ---- */
 .meta{display:flex;align-items:center;gap:12px;flex:none;
 border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.meta input{background:none;border:0;border-radius:0;padding:10px 0;
+.meta input{background:none;border:0;border-radius:0;padding:12px 0;
 font:400 14px var(--f);color:var(--tx);box-shadow:none}
 .meta input:focus{outline:none}
 .meta input[type=date]{flex:none;width:auto;min-height:0;color:var(--mut)}
 .meta #a-note{flex:1;min-width:0;text-align:right}
-.meta #a-note::placeholder{color:var(--mut);opacity:.75}
+.meta #a-note::placeholder{color:var(--mut);opacity:1}
 
-/* ---- плитки категорий: единственная тянущаяся зона экрана ---- */
-.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;
-flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
-overscroll-behavior:contain;align-content:start;padding:14px 0 4px}
-.cat{background:none;border:1px solid var(--line);border-radius:12px;padding:9px 3px;
-display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--mut);
-font:500 10.5px/1.2 var(--f);text-align:center;min-height:68px;justify-content:center;
-transition:border-color .12s,background .12s,color .12s}
-.cat .e{font-size:21px;line-height:1}
+/* ---- плитки категорий: только основные, остальные под кнопкой «Все» ---- */
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;
+flex:0 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
+overscroll-behavior:contain;align-content:start;padding:2px 0}
+.cats.all{max-height:52dvh;padding:0;flex:none}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+padding:10px 3px;display:flex;flex-direction:column;align-items:center;gap:7px;
+color:var(--mut);font:500 10.5px/1.2 var(--f);text-align:center;min-height:72px;
+justify-content:center;transition:border-color .12s,background .12s,color .12s}
+.cat .e{font-size:22px;line-height:1}
 .cat .n{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
 overflow:hidden;width:100%;word-break:break-word}
 .cat.on{border-color:var(--pick);color:var(--tx);box-shadow:inset 0 0 0 1px var(--pick)}
 .cat.add{color:var(--mut)}
+.cat.add .e{display:grid;place-items:center}
+.cat.add svg{width:22px;height:22px}
 
-/* ---- подвал с кнопкой сохранения ---- */
-.foot{flex:none;margin:0 -20px;padding:10px 20px 12px;
+/* ---- кнопка сохранения и лента последних операций под ней ---- */
+.fbhint{flex:0 0 auto;min-height:24px;padding:6px 0 2px;text-align:center;
+font:400 12px var(--f);color:var(--mut)}
+.foot{flex:0 0 auto;margin:0 -20px;padding:14px 20px 0;
 border-top:1px solid var(--line);background:var(--bg)}
 .foot .btn{margin:0}
-.cat.add .e{filter:none;opacity:1;display:grid;place-items:center}
-.cat.add svg{width:21px;height:21px}
+/* min-height держит место под три строки заранее: экран не прыгает,
+   когда появляется первая операция. */
+.recent{flex:0 0 auto;min-height:186px;
+padding:16px 0 calc(12px + env(safe-area-inset-bottom))}
+.rhead{font:500 10px/1 var(--f);color:var(--mut);text-transform:uppercase;
+letter-spacing:1px;margin:0 2px 4px}
+.rrow{display:flex;align-items:center;gap:11px;width:100%;background:none;
+border:0;padding:9px 0;color:var(--tx);text-align:left;font:inherit}
+.rrow .e{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;
+font-size:15px;flex:none}
+.rrow .t{flex:1;min-width:0;font:400 14px var(--f);
+overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rrow .t i{font-style:normal;color:var(--mut)}
+.rrow .v{font:500 14px var(--f);white-space:nowrap;font-variant-numeric:tabular-nums}
+.rrow .v.inc{color:var(--acc)}
+.rempty{font:400 13px var(--f);color:var(--mut);padding:8px 2px}
 
 /* ---- списки ---- */
-.row{display:flex;align-items:center;gap:12px;padding:11px 0;border:0;
+.row{display:flex;align-items:center;gap:13px;padding:12px 0;border:0;
 border-bottom:1px solid var(--line);width:100%;background:none;color:var(--tx);
 text-align:left;font:inherit}
 .row:last-child{border-bottom:0}
-.row .e{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
-font-size:17px;flex:none;background:var(--fill)}
+.row .e{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
+font-size:18px;flex:none}
 .row .t{flex:1;min-width:0}
 .row .t b{font:500 16px/1.25 var(--f);display:block;overflow:hidden;
 text-overflow:ellipsis;white-space:nowrap}
@@ -146,86 +170,74 @@ overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .row .t small.lim{white-space:normal;overflow:visible}
 .row .v{font:500 16px var(--f);white-space:nowrap;text-align:right;
 font-variant-numeric:tabular-nums}
-.row .v small{display:block;font:400 12px var(--f);color:var(--mut);margin-top:2px}
+.row .v.inc{color:var(--acc)}
+.row .v small{display:block;font:400 12px var(--f);color:var(--mut);margin-top:3px}
 .row .ch{color:var(--mut);flex:none;display:grid;place-items:center}
 .row .ch svg{width:16px;height:16px}
 
 /* ---- полосы лимитов ---- */
-.bar{height:4px;background:var(--bar);border-radius:2px;overflow:hidden;margin-top:8px}
-.bar i{display:block;height:100%;border-radius:2px;transition:width .3s}
-
-/* ---- итоги месяца ---- */
-.tot{display:flex;text-align:center}
-.tot div{flex:1}
-.tot span{display:block;font:400 12px var(--f);color:var(--mut);
-margin-bottom:5px;letter-spacing:.2px}
-.tot b{font:600 18px var(--f);letter-spacing:-.3px;font-variant-numeric:tabular-nums}
+.bar{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;margin-top:9px}
+.bar i{display:block;height:100%;border-radius:3px;transition:width .3s}
 
 /* ---- переключатель месяца ---- */
-.nav2{display:flex;align-items:center;justify-content:space-between;margin:6px 0 18px}
-.nav2 b{font:600 22px var(--f);letter-spacing:-.4px}
-.nav2 button{background:none;border:1px solid var(--line);color:var(--tx);
-width:34px;height:34px;border-radius:50%;display:grid;place-items:center}
+.nav2{display:flex;align-items:center;justify-content:space-between;margin:4px 0 20px}
+.nav2 b{font:500 17px var(--f);letter-spacing:-.2px}
+.nav2 button{background:var(--surface);border:1px solid var(--line);color:var(--tx);
+width:38px;height:38px;border-radius:50%;display:grid;place-items:center}
 .nav2 button svg{width:15px;height:15px}
-.nav2 button:disabled{opacity:.28}
+.nav2 button:disabled{opacity:.3}
 
 /* ---- кнопки ---- */
-.btn{display:block;width:100%;border:1px solid var(--acc);border-radius:12px;padding:15px;
-font:500 16px var(--f);background:var(--acc);color:var(--accfg);
+.btn{display:block;width:100%;border:1px solid var(--acc);border-radius:15px;
+padding:16px;font:600 16px var(--f);background:var(--acc);color:var(--accfg);
 margin-bottom:10px;letter-spacing:.1px}
-.btn:disabled{opacity:.28}
-.btn.g{background:none;color:var(--tx);border-color:var(--line)}
-.btn.r{background:none;color:var(--red);border-color:var(--line)}
-.btn:active{opacity:.65}
+.btn:disabled{opacity:.25}
+.btn.g{background:var(--surface);color:var(--tx);border-color:var(--line)}
+.btn.r{background:var(--surface);color:var(--red);border-color:var(--line)}
+.btn:active{opacity:.7}
 
-.empty{text-align:center;color:var(--mut);font:400 15px/1.55 var(--f);padding:44px 20px}
-.empty .e{font-size:34px;display:block;margin-bottom:12px}
+.empty{text-align:center;color:var(--mut);font:400 15px/1.55 var(--f);padding:48px 20px}
+.empty .e{font-size:36px;display:block;margin-bottom:14px}
 
 /* ---- шторки ---- */
-.ov{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:flex-end;
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;
 z-index:50;animation:fade .2s}
 .sheet{width:100%;background:var(--bg);border-top:1px solid var(--line);
-border-radius:20px 20px 0 0;padding:6px 20px calc(20px + env(safe-area-inset-bottom));
+border-radius:24px 24px 0 0;padding:6px 20px calc(20px + env(safe-area-inset-bottom));
 max-height:90dvh;overflow-y:auto;animation:up .3s cubic-bezier(.2,.9,.3,1)}
 @keyframes up{from{transform:translateY(100%)}}
-.grab{width:34px;height:4px;background:var(--line);border-radius:2px;margin:8px auto 16px}
-.sheet h3{font:600 17px var(--f);text-align:center;margin-bottom:18px}
+.grab{width:36px;height:4px;background:var(--line);border-radius:2px;margin:8px auto 18px}
+.sheet h3{font:500 18px var(--f);text-align:center;margin-bottom:20px}
 
 /* ---- поля ввода ---- */
-label.f{display:block;margin-bottom:12px}
-label.f>span{display:block;font:500 12px var(--f);color:var(--mut);
-text-transform:uppercase;letter-spacing:.6px;margin:0 0 7px 2px}
-input,textarea,select{font:400 16px var(--f);color:var(--tx);background:var(--card);
-border:1px solid var(--line);border-radius:11px;padding:12px 14px;width:100%;
+label.f{display:block;margin-bottom:13px}
+label.f>span{display:block;font:500 10px var(--f);color:var(--mut);
+text-transform:uppercase;letter-spacing:.9px;margin:0 0 8px 2px}
+input,textarea,select{font:400 16px var(--f);color:var(--tx);background:var(--surface);
+border:1px solid var(--line);border-radius:13px;padding:13px 14px;width:100%;
 -webkit-appearance:none;appearance:none;-webkit-user-select:text;user-select:text}
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--acc)}
-input[type=date]{min-height:46px}
+input[type=date]{min-height:48px}
 select{padding-right:36px;background-image:linear-gradient(45deg,transparent 50%,var(--mut) 50%),
 linear-gradient(135deg,var(--mut) 50%,transparent 50%);
-background-position:calc(100% - 19px) 21px,calc(100% - 14px) 21px;
+background-position:calc(100% - 19px) 22px,calc(100% - 14px) 22px;
 background-size:5px 5px,5px 5px;background-repeat:no-repeat}
 textarea{min-height:130px;font:400 13px/1.45 ui-monospace,Menlo,monospace;resize:none}
 
 /* ---- выбор значка и цвета ---- */
 .emo{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;
 max-height:128px;overflow-y:auto;padding:2px}
-.emo button{background:none;border:1px solid var(--line);border-radius:10px;
+.emo button{background:var(--surface);border:1px solid var(--line);border-radius:11px;
 font-size:20px;padding:6px 0}
-.emo button.on{border-color:var(--acc);background:var(--fill)}
+.emo button.on{border-color:var(--acc);background:var(--acct)}
 .cols{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;padding:4px 2px 2px}
 .cols button{aspect-ratio:1;border-radius:50%;border:0;position:relative}
 .cols button.on::after{content:"";position:absolute;inset:-4px;
 border:2px solid var(--tx);border-radius:50%}
 
-/* ---- диаграмма ---- */
-.donut{display:block;margin:2px auto 10px}
-.dc{text-anchor:middle;fill:var(--tx)}
-.dc .a{font:600 20px var(--f);letter-spacing:-.4px}
-.dc .b{font:400 11px var(--f);fill:var(--mut);letter-spacing:.3px}
-
 #toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));
 transform:translate(-50%,16px);background:var(--acc);color:var(--accfg);
-padding:11px 20px;border-radius:11px;font:500 14px var(--f);opacity:0;
+padding:12px 20px;border-radius:13px;font:600 14px var(--f);opacity:0;
 pointer-events:none;transition:.25s;z-index:99;max-width:88vw;text-align:center}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 
@@ -281,7 +293,11 @@ var IC = {
   chevL: svg('<path d="M15 5l-7 7 7 7"/>', 2),
   check: svg('<path d="M4.5 12.5l5 5 10-11"/>', 2),
   back:  svg('<path d="M20 5H9.6L3.5 12l6.1 7H20a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 20 5Z"/>' +
-             '<path d="M16.5 9.5l-5 5m0-5 5 5"/>')
+             '<path d="M16.5 9.5l-5 5m0-5 5 5"/>'),
+  grid:  svg('<rect x="3.5" y="3.5" width="7" height="7" rx="2"/>' +
+             '<rect x="13.5" y="3.5" width="7" height="7" rx="2"/>' +
+             '<rect x="3.5" y="13.5" width="7" height="7" rx="2"/>' +
+             '<rect x="13.5" y="13.5" width="7" height="7" rx="2"/>')
 };
 
 var MONTHS  = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
@@ -485,8 +501,64 @@ function sizeAmt(inp){
   inp.style.width = Math.max(30, Math.ceil(w) + 6) + "px";
 }
 
+/* Основные категории — те, которыми пользователь пользуется чаще всего.
+   Список сам подстраивается под привычки; выбранная категория остаётся
+   на экране, даже если в топ она пока не попала. */
+function topCats(kind, n){
+  var all = catsOf(kind), use = {};
+  S.tx.forEach(function(t){ use[t.categoryId] = (use[t.categoryId] || 0) + 1; });
+  var top = all.slice().sort(function(a, b){
+    var d = (use[b.id] || 0) - (use[a.id] || 0);
+    return d !== 0 ? d : all.indexOf(a) - all.indexOf(b);
+  }).slice(0, n);
+
+  var shown = false;
+  top.forEach(function(c){ if (c.id === A.cat) shown = true; });
+  if (!shown && A.cat) {
+    var sel = catById(A.cat);
+    if (sel && sel.kind === kind) top[top.length - 1] = sel;
+  }
+  return top;
+}
+
+/* Категория по умолчанию, если пользователь не выбрал ничего.
+   Если «Прочее» переименовали или удалили — берём последнюю в списке,
+   так же, как это делает удаление категории. */
+function fallbackCat(kind){
+  var list = catsOf(kind);
+  if (!list.length) return null;
+  for (var i = 0; i < list.length; i++) if (list[i].name === "Прочее") return list[i];
+  return list[list.length - 1];
+}
+
+function catTile(c){
+  return '<button class="cat' + (c.id === A.cat ? " on" : "") + '" data-c="' + c.id + '" ' +
+         'style="--pick:' + c.color + (c.id === A.cat ? ";background:" + c.color + "14" : "") + '">' +
+         '<span class="e">' + c.emoji + '</span><span class="n">' + esc(c.name) + "</span></button>";
+}
+
+/* Полный список категорий — в шторке, чтобы не занимать главный экран. */
+function pickCategory(kind){
+  var h = '<div class="cats all" id="p-cats">';
+  catsOf(kind).forEach(function(c){ h += catTile(c); });
+  h += '</div><div style="height:16px"></div>' +
+       '<button class="btn g" id="p-new">Новая категория</button>' +
+       '<button class="btn g" id="p-no">Отмена</button>';
+
+  openSheet(kind === "expense" ? "Категория расхода" : "Категория дохода", h, function(ov){
+    ov.querySelector("#p-cats").onclick = function(e){
+      var b = e.target.closest("button[data-c]"); if (!b) return;
+      A.cat = b.dataset.c;
+      closeSheet();
+      renderAdd();
+    };
+    ov.querySelector("#p-new").onclick = function(){ closeSheet(); editCategory(null, kind); };
+    ov.querySelector("#p-no").onclick = closeSheet;
+  });
+}
+
 function renderAdd(){
-  var cats = catsOf(A.kind);
+  var cats = topCats(A.kind, 7);
   if (A.cat && !catById(A.cat)) A.cat = null;
   var sel = catById(A.cat);
   if (sel && sel.kind !== A.kind) A.cat = null;
@@ -510,17 +582,40 @@ function renderAdd(){
        "</div>";
 
   h += '<div class="cats" id="a-cats">';
-  cats.forEach(function(c){
-    h += '<button class="cat' + (c.id===A.cat?" on":"") + '" data-c="' + c.id + '" ' +
-         'style="--pick:' + c.color + (c.id===A.cat ? ";background:" + c.color + "14" : "") + '">' +
-         '<span class="e">' + c.emoji + '</span><span class="n">' + esc(c.name) + "</span></button>";
-  });
-  h += '<button class="cat add" data-c="__new">' +
-       '<span class="e">' + IC.plus + '</span><span class="n">Новая</span></button>';
+  cats.forEach(function(c){ h += catTile(c); });
+  h += '<button class="cat add" data-c="__all">' +
+       '<span class="e">' + IC.grid + '</span><span class="n">Все</span></button>';
   h += "</div>";
 
+  /* Подсказка всегда в разметке, чтобы экран не дёргался: текст появляется,
+     только когда сумма набрана, а категория не выбрана. */
+  var fb = fallbackCat(A.kind);
+  var fbName = fb ? fb.name : "";
+  h += '<div class="fbhint" id="a-fbhint">' +
+       (!A.cat && A.amt !== "" && fbName ? "без выбора запишется в «" + esc(fbName) + "»" : "") +
+       "</div>";
+
   h += '<div class="foot"><button class="btn" id="a-save"' +
-       (A.amt === "" || !A.cat ? " disabled" : "") + ">Сохранить</button></div>";
+       (A.amt === "" ? " disabled" : "") + ">Сохранить</button></div>";
+
+  /* Лента последних операций: сразу видно, что записалось, и можно поправить. */
+  var last = S.tx.slice().sort(function(a, b){ return b.createdAt - a.createdAt; }).slice(0, 3);
+  h += '<div class="recent"><div class="rhead">Последние</div>';
+  if (!last.length) {
+    h += '<div class="rempty">Здесь появятся последние операции</div>';
+  } else {
+    last.forEach(function(t){
+      var c = catById(t.categoryId) ||
+              { name:"Удалённая категория", emoji:"❓", color:"#8e8e93" };
+      h += '<button class="rrow" data-tx="' + t.id + '">' +
+           '<span class="e" style="background:' + c.color + '26">' + c.emoji + "</span>" +
+           '<span class="t">' + esc(c.name) +
+           (t.note ? ' <i>· ' + esc(t.note) + "</i>" : "") + "</span>" +
+           '<span class="v' + (t.kind === "expense" ? "" : " inc") + '">' +
+           (t.kind === "expense" ? "−" : "+") + " " + fmt(t.amount) + "</span></button>";
+    });
+  }
+  h += "</div>";
 
   el("t-add").innerHTML = h;
 
@@ -544,7 +639,9 @@ function renderAdd(){
     try { this.setSelectionRange(pos, pos); } catch(e){}
     el("a-box").className = "amtbox " +
       (A.amt === "" ? "" : (A.kind === "expense" ? "exp" : "inc"));
-    el("a-save").disabled = (A.amt === "" || !A.cat);
+    el("a-save").disabled = (A.amt === "");
+    el("a-fbhint").textContent =
+      (!A.cat && A.amt !== "" && fbName) ? "без выбора запишется в «" + fbName + "»" : "";
   };
 
   /* pointerdown с preventDefault: кнопка не перехватывает фокус и не успевает
@@ -561,9 +658,16 @@ function renderAdd(){
 
   el("a-cats").onclick = function(e){
     var b = e.target.closest("button[data-c]"); if (!b) return;
-    if (b.dataset.c === "__new") { editCategory(null, A.kind); return; }
+    if (b.dataset.c === "__all") { pickCategory(A.kind); return; }
     A.cat = (A.cat === b.dataset.c) ? null : b.dataset.c;
     renderAdd();
+  };
+
+  /* onclick, а не addEventListener: #t-add переживает перерисовки,
+     и слушатели копились бы с каждым вызовом renderAdd. */
+  el("t-add").onclick = function(e){
+    var b = e.target.closest("button[data-tx]");
+    if (b) editTx(b.dataset.tx);
   };
 
   el("a-save").onclick = saveTx;
@@ -577,11 +681,18 @@ function parseAmt(s){
 function saveTx(){
   var v = parseAmt(A.amt);
   if (v <= 0) { toast("Введите сумму"); return; }
-  if (!A.cat) { toast("Выберите категорию"); return; }
-  S.tx.push({ id: uid(), amount: v, categoryId: A.cat, kind: A.kind,
+
+  var catId = A.cat;
+  if (!catId) {
+    var fb = fallbackCat(A.kind);
+    if (!fb) { toast("Сначала создайте категорию"); return; }
+    catId = fb.id;
+  }
+
+  S.tx.push({ id: uid(), amount: v, categoryId: catId, kind: A.kind,
               date: A.date, note: A.note.trim(), createdAt: Date.now() });
   saveState();
-  var name = catById(A.cat).name;
+  var name = catById(catId).name;
   A.amt = ""; A.note = "";
   renderAdd();
   toast((A.kind === "expense" ? "− " : "+ ") + fmt(v) + " · " + name);
@@ -601,27 +712,29 @@ function renderMonth(){
     '<button id="m-prev">' + IC.chevL + '</button><b>' + monthTitle(view) + "</b>" +
     '<button id="m-next"' + (view >= monthOf(today()) ? " disabled" : "") + ">" + IC.chev + "</button></div>";
 
-  h += '<div class="card"><div class="tot">' +
-    '<div><span>Доходы</span><b style="color:var(--green)">' + fmt(iSum) + "</b></div>" +
-    '<div><span>Расходы</span><b style="color:var(--red)">' + fmt(eSum) + "</b></div>" +
-    '<div><span>Баланс</span><b style="color:' + (bal < 0 ? "var(--red)" : "var(--tx)") + '">' +
-      (bal > 0 ? "+" : "") + fmt(bal) + "</b></div>" +
-    "</div>";
+  /* Герой экрана — баланс месяца крупно и тонко, под ним две сводки. */
+  h += '<div class="hero">' +
+    '<div class="big' + (bal < 0 ? " neg" : "") + '">' +
+      (bal > 0 ? "+" : "") + fmt(bal, false) + "</div>" +
+    '<div class="cap">баланс за ' + monthTitle(view).toLowerCase() + ", " + esc(symbol()) + "</div>" +
+    '<div class="chips">' +
+      '<div class="chip"><span>Доходы</span><b class="inc">' + fmt(iSum) + "</b></div>" +
+      '<div class="chip"><span>Расходы</span><b>' + fmt(eSum) + "</b></div>" +
+    "</div></div>";
 
   if (S.totalLimit > 0) {
     var p = Math.min(100, eSum / S.totalLimit * 100);
     var over = eSum > S.totalLimit;
-    h += '<div style="padding:12px 0 4px;border-top:.5px solid var(--sep);margin-top:12px">' +
-      '<div style="display:flex;justify-content:space-between;font:500 13px var(--f)">' +
-      "<span>Лимит на месяц</span><span style=\"color:" + (over ? "var(--red)" : "var(--mut)") + '">' +
-      fmt(eSum) + " / " + fmt(S.totalLimit) + "</span></div>" +
+    h += '<div class="sec">Лимит на месяц</div><div class="card">' +
+      '<div style="display:flex;justify-content:space-between;font:500 14px var(--f)">' +
+      "<span>" + fmt(eSum) + '</span><span style="color:var(--mut)">из ' + fmt(S.totalLimit) + "</span></div>" +
       '<div class="bar"><i style="width:' + p + "%;background:" +
-      (over ? "var(--red)" : p > 80 ? "#ff9500" : "var(--green)") + '"></i></div>' +
-      '<div style="font:400 12px var(--f);color:' + (over ? "var(--red)" : "var(--mut)") + ';margin-top:6px">' +
-      (over ? "Перерасход " + fmt(eSum - S.totalLimit) : "Осталось " + fmt(S.totalLimit - eSum)) +
+      (over ? "var(--red)" : "var(--acc)") + '"></i></div>' +
+      '<div style="font:400 12px var(--f);margin-top:9px;color:' +
+      (over ? "var(--red)" : "var(--mut)") + '">' +
+      (over ? "перерасход " + fmt(eSum - S.totalLimit) : "осталось " + fmt(S.totalLimit - eSum)) +
       "</div></div>";
   }
-  h += "</div>";
 
   if (!list.length) {
     h += '<div class="empty"><span class="e">🗓</span>За этот месяц записей нет.<br>' +
@@ -643,8 +756,9 @@ function renderMonth(){
   }).sort(function(a,b){ return b.v - a.v; });
 
   if (rows.length) {
-    h += '<div class="sec">Расходы по категориям</div><div class="card">';
-    h += donut(rows, eSum);
+    h += '<div class="sec">Расходы по категориям</div>';
+    h += stack(rows, eSum);
+    h += '<div class="card">';
     rows.forEach(function(r){
       var pct = eSum ? Math.round(r.v / eSum * 100) : 0;
       h += '<div class="row"><span class="e" style="background:' + r.c.color + '26">' + r.c.emoji + "</span>" +
@@ -671,7 +785,7 @@ function renderMonth(){
       var c = catById(id) || { name:"Удалённая категория", emoji:"❓", color:"#8e8e93" };
       h += '<div class="row"><span class="e" style="background:' + c.color + '26">' + c.emoji + "</span>" +
            '<div class="t"><b>' + esc(c.name) + '</b></div>' +
-           '<span class="v" style="color:var(--green)">' + fmt(ig[id]) + "</span></div>";
+           '<span class="v inc">' + fmt(ig[id]) + "</span></div>";
     });
     h += "</div>";
   }
@@ -693,7 +807,7 @@ function renderMonth(){
            '<span class="e" style="background:' + c.color + '26">' + c.emoji + "</span>" +
            '<div class="t"><b>' + esc(c.name) + "</b>" +
            (t.note ? "<small>" + esc(t.note) + "</small>" : "") + "</div>" +
-           '<span class="v" style="color:' + (t.kind === "expense" ? "var(--tx)" : "var(--green)") + '">' +
+           '<span class="v' + (t.kind === "expense" ? "" : " inc") + '">' +
            (t.kind === "expense" ? "−" : "+") + " " + fmt(t.amount) + "</span>" +
            '<span class="ch">' + IC.chev + '</span></button>';
     });
@@ -715,23 +829,16 @@ function bindMonthNav(){
   if (!n.disabled) n.onclick = function(){ view = shiftMonth(view,1); renderMonth(); };
 }
 
-function donut(rows, total){
+/* Доли категорий одной горизонтальной полосой. Ширины задаются через
+   flex-grow, поэтому зазоры между сегментами не ломают пропорции. */
+function stack(rows, total){
   if (!total) return "";
-  var R = 52, C = 2 * Math.PI * R, off = 0, segs = "";
+  var h = '<div class="stack">';
   rows.forEach(function(r){
-    var len = r.v / total * C;
-    if (len < 0.6) return;
-    segs += '<circle cx="70" cy="70" r="' + R + '" fill="none" stroke="' + r.c.color +
-            '" stroke-width="16" stroke-dasharray="' + (len - 1.2) + " " + (C - len + 1.2) +
-            '" stroke-dashoffset="' + (-off) + '" stroke-linecap="butt"></circle>';
-    off += len;
+    if (r.v / total < 0.005) return;
+    h += '<i style="flex:' + r.v + ';background:' + r.c.color + '"></i>';
   });
-  return '<svg class="donut" width="140" height="140" viewBox="0 0 140 140">' +
-    '<g transform="rotate(-90 70 70)">' +
-    '<circle cx="70" cy="70" r="' + R + '" fill="none" stroke="var(--bar)" stroke-width="16"></circle>' +
-    segs + "</g>" +
-    '<g class="dc"><text class="a" x="70" y="68">' + fmt(total,false) + "</text>" +
-    '<text class="b" x="70" y="86">расходы, ' + esc(symbol()) + "</text></g></svg>";
+  return h + "</div>";
 }
 
 /* ---------- Редактирование операции ---------- */
@@ -763,7 +870,7 @@ function editTx(id){
         t.categoryId = ov.querySelector("#e-cat").value;
         t.date = ov.querySelector("#e-date").value || t.date;
         t.note = ov.querySelector("#e-note").value.trim();
-        saveState(); closeSheet(); renderMonth(); toast("Сохранено");
+        saveState(); closeSheet(); renderAll(); toast("Сохранено");
       };
       ov.querySelector("#e-del").onclick = function(){
         closeSheet();
@@ -771,7 +878,7 @@ function editTx(id){
           ((catById(t.categoryId) || {}).name || "категория удалена"),
           "Удалить", true, function(){
             S.tx = S.tx.filter(function(x){ return x.id !== id; });
-            saveState(); renderMonth(); toast("Операция удалена");
+            saveState(); renderAll(); toast("Операция удалена");
           });
       };
       ov.querySelector("#e-no").onclick = closeSheet;
@@ -918,7 +1025,7 @@ function renderSet(){
   CUR.forEach(function(c){
     var on = S.currency === c[0] && !S.symbol;
     h += '<button class="row" data-cur="' + c[0] + '">' +
-         '<span class="e" style="background:var(--fill);font-size:17px;font-weight:600">' + c[1] + "</span>" +
+         '<span class="e" style="background:var(--surface2);font-size:17px;font-weight:600">' + c[1] + "</span>" +
          '<div class="t"><b>' + c[2] + "</b><small>" + c[0] + "</small></div>" +
          (on ? '<span class="ch" style="color:var(--acc)">' + IC.check + "</span>" : "") + "</button>";
   });
