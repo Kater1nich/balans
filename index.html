@@ -19,18 +19,21 @@
 --bg:#fff;--card:#f7f8f9;--card2:#eef0f2;--tx:#111214;--mut:#8b8f96;--line:#e6e8eb;
 --acc:#111214;--accfg:#fff;--red:#c8372d;--green:#0f7a52;
 --fill:#f2f3f5;--bar:#eceef1;--tabbg:rgba(255,255,255,.88);
+--redt:rgba(200,55,45,.10);--greent:rgba(15,122,82,.10);
 --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
 color-scheme:light
 }
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){
 --bg:#0c0d0e;--card:#16181a;--card2:#1e2124;--tx:#f2f3f5;--mut:#8b8f96;--line:#26292d;
 --acc:#f2f3f5;--accfg:#0c0d0e;--red:#ff6b60;--green:#3fcf8e;
---fill:#1a1d1f;--bar:#232629;--tabbg:rgba(12,13,14,.88);color-scheme:dark
+--fill:#1a1d1f;--bar:#232629;--tabbg:rgba(12,13,14,.88);color-scheme:dark;
+--redt:rgba(255,107,96,.15);--greent:rgba(63,207,142,.15);
 }}
 :root[data-theme=dark]{
 --bg:#0c0d0e;--card:#16181a;--card2:#1e2124;--tx:#f2f3f5;--mut:#8b8f96;--line:#26292d;
 --acc:#f2f3f5;--accfg:#0c0d0e;--red:#ff6b60;--green:#3fcf8e;
---fill:#1a1d1f;--bar:#232629;--tabbg:rgba(12,13,14,.88);color-scheme:dark
+--fill:#1a1d1f;--bar:#232629;--tabbg:rgba(12,13,14,.88);color-scheme:dark;
+--redt:rgba(255,107,96,.15);--greent:rgba(63,207,142,.15);
 }
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--tx);overscroll-behavior:none;
@@ -65,22 +68,37 @@ letter-spacing:.8px;margin:26px 2px 10px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
 padding:12px 16px;margin-bottom:12px}
 
-/* ---- вкладки расход/доход ---- */
-.seg{display:flex;gap:26px;border-bottom:1px solid var(--line);margin:2px 2px 6px}
-.seg button{background:none;border:0;color:var(--mut);font:500 15px/1 var(--f);
-padding:10px 0 12px;position:relative;letter-spacing:.1px;transition:color .15s}
-.seg button.on{color:var(--tx)}
-.seg button.on::after{content:"";position:absolute;left:0;right:0;bottom:-1px;
-height:2px;background:var(--acc);border-radius:1px}
+/* ---- переключатель расход/доход: активная половина заливается
+       смысловым цветом, тем же, каким потом красится сумма ---- */
+.seg{display:flex;gap:4px;flex:none;border:1px solid var(--line);
+border-radius:12px;padding:3px;margin:2px 0 0}
+.seg button{flex:1;background:none;border:0;border-radius:9px;color:var(--mut);
+font:500 14px/1 var(--f);padding:11px 0;letter-spacing:.1px;
+transition:background .15s,color .15s;display:flex;align-items:center;
+justify-content:center;gap:7px}
+.seg button::before{content:"";width:7px;height:7px;border-radius:50%;
+background:currentColor;opacity:.35;transition:opacity .15s}
+.seg button.on{font-weight:600}
+.seg button.on::before{opacity:1}
+.seg .sx.on{background:var(--redt);color:var(--red)}
+.seg .si.on{background:var(--greent);color:var(--green)}
 
-/* ---- сумма ---- */
-.amt{text-align:center;font:600 46px/1 var(--f);letter-spacing:-2px;
-padding:16px 0 14px;word-break:break-all;font-variant-numeric:tabular-nums;flex:none}
-.amt.z{color:var(--mut)}
-.amt.exp{color:var(--red)}
-.amt.inc{color:var(--green)}
-.amt em{font-style:normal;font-size:22px;font-weight:400;letter-spacing:0;
-margin-left:9px;color:var(--mut);vertical-align:3px}
+/* ---- сумма: обычное поле, по тапу открывает цифровую клавиатуру устройства ---- */
+.amtbox{flex:none;display:flex;align-items:baseline;justify-content:center;
+gap:9px;padding:26px 0 22px;position:relative}
+#a-amt{background:none;border:0;box-shadow:none;border-radius:0;padding:0;
+width:auto;min-width:2ch;text-align:center;caret-color:var(--acc);
+font:600 46px/1.15 var(--f);letter-spacing:-2px;color:var(--tx);
+font-variant-numeric:tabular-nums}
+#a-amt:focus{outline:none}
+#a-amt::placeholder{color:var(--mut);opacity:1}
+.amtbox.exp #a-amt{color:var(--red)}
+.amtbox.inc #a-amt{color:var(--green)}
+.amtbox .cur{font:400 22px var(--f);color:var(--mut);flex:none}
+.done{position:absolute;right:0;top:50%;transform:translateY(-50%);
+background:var(--fill);border:0;border-radius:8px;color:var(--tx);
+font:500 13px var(--f);padding:8px 12px;visibility:hidden}
+.amtbox:focus-within .done{visibility:visible}
 
 /* ---- строка даты и заметки ---- */
 .meta{display:flex;align-items:center;gap:12px;flex:none;
@@ -93,36 +111,23 @@ font:400 14px var(--f);color:var(--tx);box-shadow:none}
 .meta #a-note::placeholder{color:var(--mut);opacity:.75}
 
 /* ---- плитки категорий: единственная тянущаяся зона экрана ---- */
-.cats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;
 flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
-overscroll-behavior:contain;align-content:start;padding:12px 0 4px}
-.cat{background:none;border:1px solid var(--line);border-radius:10px;padding:7px 2px;
-display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--mut);
-font:500 10px/1.15 var(--f);text-align:center;min-height:60px;justify-content:center;
+overscroll-behavior:contain;align-content:start;padding:14px 0 4px}
+.cat{background:none;border:1px solid var(--line);border-radius:12px;padding:9px 3px;
+display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--mut);
+font:500 10.5px/1.2 var(--f);text-align:center;min-height:68px;justify-content:center;
 transition:border-color .12s,background .12s,color .12s}
-.cat .e{font-size:19px;line-height:1;filter:grayscale(1);opacity:.85;transition:.12s}
+.cat .e{font-size:21px;line-height:1}
 .cat .n{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
 overflow:hidden;width:100%;word-break:break-word}
-.cat.on{border-color:var(--pick);color:var(--tx)}
-.cat.on .e{filter:none;opacity:1}
+.cat.on{border-color:var(--pick);color:var(--tx);box-shadow:inset 0 0 0 1px var(--pick)}
 .cat.add{color:var(--mut)}
 
-/* ---- клавиатура: закреплена внизу, во всю ширину ---- */
-.pad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;flex:none;
-margin:0 -20px;padding:8px 16px 10px;
+/* ---- подвал с кнопкой сохранения ---- */
+.foot{flex:none;margin:0 -20px;padding:10px 20px 12px;
 border-top:1px solid var(--line);background:var(--bg)}
-.pad button{background:none;border:0;color:var(--tx);font:400 23px/1 var(--f);
-height:44px;border-radius:10px;display:grid;place-items:center;
-font-variant-numeric:tabular-nums;transition:background .12s}
-.pad button:active{background:var(--fill)}
-.pad button svg{width:22px;height:22px}
-.pad button.k0{grid-column:span 2}
-.pad button.ksave{grid-row:span 3;height:auto;background:var(--acc);color:var(--accfg);
-border-radius:12px;display:flex;flex-direction:column;align-items:center;
-justify-content:center;gap:6px;font:500 10px/1 var(--f);letter-spacing:.2px}
-.pad button.ksave svg{width:24px;height:24px}
-.pad button.ksave:active{background:var(--acc);opacity:.7}
-.pad button.ksave:disabled{opacity:.25}
+.foot .btn{margin:0}
 .cat.add .e{filter:none;opacity:1;display:grid;place-items:center}
 .cat.add svg{width:21px;height:21px}
 
@@ -174,7 +179,7 @@ margin-bottom:10px;letter-spacing:.1px}
 .btn:active{opacity:.65}
 
 .empty{text-align:center;color:var(--mut);font:400 15px/1.55 var(--f);padding:44px 20px}
-.empty .e{font-size:30px;display:block;margin-bottom:12px;opacity:.4;filter:grayscale(1)}
+.empty .e{font-size:34px;display:block;margin-bottom:12px}
 
 /* ---- шторки ---- */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:flex-end;
@@ -455,21 +460,49 @@ function groupAmt(s){
   return p.length > 1 ? i + "," + p[1] : i;
 }
 
+/* Приводит всё, что пользователь набрал на системной клавиатуре,
+   к виду "1250,5": только цифры, одна запятая, не больше двух копеек. */
+function cleanAmt(s){
+  s = String(s).replace(/\s/g, "").replace(/[.]/g, ",").replace(/[^\d,]/g, "");
+  var i = s.indexOf(",");
+  if (i > -1) s = s.slice(0, i + 1) + s.slice(i + 1).replace(/,/g, "");
+  i = s.indexOf(",");
+  var whole = i > -1 ? s.slice(0, i) : s;
+  var frac  = i > -1 ? s.slice(i + 1, i + 3) : null;
+  whole = whole.replace(/^0+(?=\d)/, "").slice(0, 12);
+  if (frac === null) return whole;
+  return (whole === "" ? "0" : whole) + "," + frac;
+}
+
+/* Поле суммы растёт под содержимое: ширину меряем на канвасе тем же шрифтом. */
+var measure = null;
+function sizeAmt(inp){
+  if (!measure) measure = document.createElement("canvas").getContext("2d");
+  var cs = getComputedStyle(inp);
+  measure.font = cs.fontWeight + " " + cs.fontSize + " " + cs.fontFamily;
+  var txt = inp.value || inp.placeholder || "0";
+  var w = measure.measureText(txt).width + txt.length * (parseFloat(cs.letterSpacing) || 0);
+  inp.style.width = Math.max(30, Math.ceil(w) + 6) + "px";
+}
+
 function renderAdd(){
   var cats = catsOf(A.kind);
   if (A.cat && !catById(A.cat)) A.cat = null;
   var sel = catById(A.cat);
   if (sel && sel.kind !== A.kind) A.cat = null;
 
-  var disp = A.amt === "" ? "0" : groupAmt(A.amt);
-  var cls = A.amt === "" ? "z" : (A.kind === "expense" ? "exp" : "inc");
+  var cls = A.amt === "" ? "" : (A.kind === "expense" ? "exp" : "inc");
 
   var h = "";
   h += '<div class="seg" id="a-seg">' +
-       '<button data-k="expense"' + (A.kind==="expense"?' class="on"':"") + ">Расход</button>" +
-       '<button data-k="income"'  + (A.kind==="income" ?' class="on"':"") + ">Доход</button></div>";
+       '<button class="sx' + (A.kind==="expense"?" on":"") + '" data-k="expense">Расход</button>' +
+       '<button class="si' + (A.kind==="income" ?" on":"") + '" data-k="income">Доход</button></div>';
 
-  h += '<div class="amt ' + cls + '">' + esc(disp) + "<em>" + esc(symbol()) + "</em></div>";
+  h += '<div class="amtbox ' + cls + '" id="a-box">' +
+       '<input id="a-amt" type="text" inputmode="decimal" autocomplete="off" ' +
+       'enterkeyhint="done" placeholder="0" value="' + esc(groupAmt(A.amt)) + '">' +
+       '<span class="cur">' + esc(symbol()) + "</span>" +
+       '<button class="done" id="a-done">Готово</button></div>';
 
   h += '<div class="meta">' +
        '<input type="date" id="a-date" value="' + A.date + '">' +
@@ -486,30 +519,41 @@ function renderAdd(){
        '<span class="e">' + IC.plus + '</span><span class="n">Новая</span></button>';
   h += "</div>";
 
-  /* Клавиатура: цифры 1–9 занимают три колонки, кнопка сохранения —
-     высокий блок в четвёртой, ноль растянут на две ячейки. */
-  h += '<div class="pad" id="a-pad">';
-  ["1","2","3","⌫","4","5","6"].forEach(function(k){
-    h += '<button data-k="' + k + '">' + (k === "⌫" ? IC.back : k) + "</button>";
-  });
-  h += '<button class="ksave" id="a-save"' + (A.amt === "" || !A.cat ? " disabled" : "") + ">" +
-       IC.check + "<span>Сохранить</span></button>";
-  ["7","8","9",","].forEach(function(k){
-    h += '<button data-k="' + k + '">' + k + "</button>";
-  });
-  h += '<button class="k0" data-k="0">0</button>';
-  h += "</div>";
+  h += '<div class="foot"><button class="btn" id="a-save"' +
+       (A.amt === "" || !A.cat ? " disabled" : "") + ">Сохранить</button></div>";
 
   el("t-add").innerHTML = h;
+
+  var amt = el("a-amt");
+  sizeAmt(amt);
+
+  /* Правим значение на месте, не перерисовывая экран, — иначе поле потеряет
+     фокус и системная клавиатура закроется на первой же цифре. */
+  amt.oninput = function(){
+    var before = this.value.slice(0, this.selectionStart).replace(/[^\d,]/g, "").length;
+    A.amt = cleanAmt(this.value);
+    var out = groupAmt(A.amt);
+    this.value = out;
+    sizeAmt(this);
+    var seen = 0, pos = before === 0 ? 0 : out.length;
+    if (before > 0) {
+      for (var i = 0; i < out.length; i++) {
+        if (/[\d,]/.test(out.charAt(i)) && ++seen === before) { pos = i + 1; break; }
+      }
+    }
+    try { this.setSelectionRange(pos, pos); } catch(e){}
+    el("a-box").className = "amtbox " +
+      (A.amt === "" ? "" : (A.kind === "expense" ? "exp" : "inc"));
+    el("a-save").disabled = (A.amt === "" || !A.cat);
+  };
+
+  /* pointerdown с preventDefault: кнопка не перехватывает фокус и не успевает
+     спрятаться раньше, чем сработает нажатие. */
+  el("a-done").addEventListener("pointerdown", function(e){ e.preventDefault(); amt.blur(); });
 
   el("a-seg").onclick = function(e){
     var b = e.target.closest("button[data-k]"); if (!b) return;
     A.kind = b.dataset.k; A.cat = null; renderAdd();
-  };
-
-  el("a-pad").onclick = function(e){
-    var b = e.target.closest("button[data-k]"); if (!b) return;
-    key(b.dataset.k);
   };
 
   el("a-date").onchange = function(){ A.date = this.value || today(); };
@@ -523,22 +567,6 @@ function renderAdd(){
   };
 
   el("a-save").onclick = saveTx;
-}
-
-function key(k){
-  if (k === "⌫") {
-    A.amt = A.amt.slice(0,-1);
-  } else if (k === ",") {
-    if (A.amt === "") A.amt = "0,";
-    else if (A.amt.indexOf(",") === -1) A.amt += ",";
-  } else {
-    if (A.amt === "0") A.amt = "";
-    var dot = A.amt.indexOf(",");
-    if (dot > -1 && A.amt.length - dot > 2) return;
-    if (A.amt.replace(",","").length >= 12) return;
-    A.amt += k;
-  }
-  renderAdd();
 }
 
 function parseAmt(s){
