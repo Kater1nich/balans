@@ -84,8 +84,10 @@ border:1px solid var(--line);border-radius:14px;padding:4px;margin:2px 0 0}
 .seg button{flex:1;background:none;border:0;border-radius:11px;color:var(--mut);
 font:500 14px/1 var(--f);padding:11px 0;letter-spacing:.1px;
 transition:background .15s,color .15s}
-.seg .sx.on{background:var(--surface2);color:var(--tx);font-weight:600}
-.seg .si.on{background:var(--acc);color:var(--accfg);font-weight:600}
+/* Начертание одинаковое в обоих состояниях: при 600 у активной текст
+   становился шире и «прыгал» при переключении. Активность несёт заливка. */
+.seg .sx.on{background:var(--surface2);color:var(--tx)}
+.seg .si.on{background:var(--acc);color:var(--accfg)}
 
 /* ---- сумма: обычное поле, по тапу открывает клавиатуру устройства ---- */
 /* auto-поля по вертикали: свободное место экрана достаётся сумме,
@@ -105,20 +107,33 @@ background:var(--surface2);border:0;border-radius:10px;color:var(--tx);
 font:500 13px var(--f);padding:9px 13px;visibility:hidden}
 .amtbox:focus-within .done{visibility:visible}
 
-/* ---- строка даты и заметки ---- */
-.meta{display:flex;align-items:center;gap:12px;flex:none;
-border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.meta input{background:none;border:0;border-radius:0;padding:12px 0;
-font:400 14px var(--f);color:var(--tx);box-shadow:none}
-.meta input:focus{outline:none}
-.meta input[type=date]{flex:none;width:auto;min-height:0;color:var(--mut)}
-.meta #a-note{flex:1;min-width:0;text-align:right}
-.meta #a-note::placeholder{color:var(--mut);opacity:1}
+/* ---- дата и заметка: две плашки вместо голой строки ---- */
+.meta{display:flex;align-items:stretch;gap:8px;flex:0 0 auto}
+.mchip{position:relative;display:flex;align-items:center;gap:9px;
+background:var(--surface);border:1px solid var(--line);border-radius:14px;
+padding:0 14px;min-height:46px;transition:border-color .15s;
+font:inherit;color:var(--tx);text-align:left;-webkit-appearance:none;appearance:none}
+.mdate:active{background:var(--surface2)}
+.mchip>svg{width:16px;height:16px;color:var(--mut);flex:none}
+.mdate{flex:none}
+.mdate b{font:500 14px var(--f);color:var(--tx);white-space:nowrap}
+/* Поле даты невидимо и не ловит нажатия: у системного input[type=date] на iOS
+   срабатывает не вся площадь. Нажатия принимает вся плашка, а календарь
+   открываем сами через showPicker(). Поле лежит внутри плашки, чтобы
+   всплывающий выбор даты появлялся рядом с ней. */
+.mdate input{position:absolute;inset:0;width:100%;height:100%;opacity:0;
+pointer-events:none;padding:0;margin:0;border:0;background:none;border-radius:14px}
+.mnote{flex:1;min-width:0}
+.mnote input{background:none;border:0;border-radius:0;padding:0;box-shadow:none;
+font:400 14px var(--f);color:var(--tx);width:100%}
+.mnote input:focus{outline:none}
+.mnote input::placeholder{color:var(--mut);opacity:1}
+.mnote:focus-within{border-color:var(--acc)}
 
 /* ---- плитки категорий: только основные, остальные под кнопкой «Все» ---- */
 .cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;
 flex:0 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;
-overscroll-behavior:contain;align-content:start;padding:2px 0}
+overscroll-behavior:contain;align-content:start;padding:15px 0}
 .cats.all{max-height:52dvh;padding:0;flex:none}
 .cat{background:var(--surface);border:1px solid var(--line);border-radius:16px;
 padding:10px 3px;display:flex;flex-direction:column;align-items:center;gap:7px;
@@ -133,15 +148,15 @@ overflow:hidden;width:100%;word-break:break-word}
 .cat.add svg{width:22px;height:22px}
 
 /* ---- кнопка сохранения и лента последних операций под ней ---- */
-.fbhint{flex:0 0 auto;min-height:24px;padding:6px 0 2px;text-align:center;
-font:400 12px var(--f);color:var(--mut)}
-.foot{flex:0 0 auto;margin:0 -20px;padding:14px 20px 0;
+.foot{flex:0 0 auto;margin:0 -20px;padding:12px 20px 0;
 border-top:1px solid var(--line);background:var(--bg)}
 .foot .btn{margin:0}
-/* min-height держит место под три строки заранее: экран не прыгает,
-   когда появляется первая операция. */
-.recent{flex:0 0 auto;min-height:186px;
-padding:16px 0 calc(12px + env(safe-area-inset-bottom))}
+/* Место под подсказку зарезервировано всегда, поэтому кнопка не прыгает. */
+.fbhint{min-height:22px;padding:0 0 8px;text-align:center;
+font:400 12px var(--f);color:var(--mut)}
+/* Безопасную зону снизу учитывает панель вкладок, лента её добавлять
+   не должна — иначе над панелью повисает пустая полоса в 34px. */
+.recent{flex:0 0 auto;padding:16px 0 12px}
 .rhead{font:500 10px/1 var(--f);color:var(--mut);text-transform:uppercase;
 letter-spacing:1px;margin:0 2px 4px}
 .rrow{display:flex;align-items:center;gap:11px;width:100%;background:none;
@@ -294,6 +309,10 @@ var IC = {
   check: svg('<path d="M4.5 12.5l5 5 10-11"/>', 2),
   back:  svg('<path d="M20 5H9.6L3.5 12l6.1 7H20a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 20 5Z"/>' +
              '<path d="M16.5 9.5l-5 5m0-5 5 5"/>'),
+  cal:   svg('<rect x="3.5" y="5.5" width="17" height="15" rx="3.5"/>' +
+             '<path d="M8 3v5M16 3v5M3.5 11h17"/>'),
+  note:  svg('<path d="M4 20h4L18.4 9.6a2.55 2.55 0 0 0-3.6-3.6L4 16.4V20Z"/>' +
+             '<path d="M13.8 7l3.2 3.2"/>'),
   grid:  svg('<rect x="3.5" y="3.5" width="7" height="7" rx="2"/>' +
              '<rect x="13.5" y="3.5" width="7" height="7" rx="2"/>' +
              '<rect x="3.5" y="13.5" width="7" height="7" rx="2"/>' +
@@ -333,6 +352,18 @@ function monthTitle(mk){
 function shiftMonth(mk, delta){
   var p = mk.split("-"), d = new Date(parseInt(p[0],10), parseInt(p[1],10)-1 + delta, 1);
   return d.getFullYear() + "-" + pad2(d.getMonth()+1);
+}
+
+/* Короткая подпись даты для плашки: «Сегодня», «Вчера» или «3 июл». */
+var MONTHS3 = ["янв","фев","мар","апр","мая","июн","июл","авг","сен","окт","ноя","дек"];
+
+function dateLabel(iso){
+  if (iso === today()) return "Сегодня";
+  var y = new Date(); y.setDate(y.getDate() - 1);
+  if (iso === y.getFullYear() + "-" + pad2(y.getMonth()+1) + "-" + pad2(y.getDate())) return "Вчера";
+  var p = iso.split("-");
+  return (+p[2]) + " " + MONTHS3[+p[1]-1] +
+         (+p[0] !== new Date().getFullYear() ? " " + p[0] : "");
 }
 
 function dayTitle(iso){
@@ -577,9 +608,13 @@ function renderAdd(){
        '<button class="done" id="a-done">Готово</button></div>';
 
   h += '<div class="meta">' +
-       '<input type="date" id="a-date" value="' + A.date + '">' +
-       '<input id="a-note" placeholder="заметка" value="' + esc(A.note) + '" maxlength="60">' +
-       "</div>";
+       '<button type="button" class="mchip mdate" id="a-datebtn">' + IC.cal +
+         '<b id="a-datelbl">' + esc(dateLabel(A.date)) + "</b>" +
+         '<input type="date" id="a-date" value="' + A.date + '" tabindex="-1">' +
+       "</button>" +
+       '<label class="mchip mnote">' + IC.note +
+         '<input id="a-note" placeholder="заметка" value="' + esc(A.note) + '" maxlength="60">' +
+       "</label></div>";
 
   h += '<div class="cats" id="a-cats">';
   cats.forEach(function(c){ h += catTile(c); });
@@ -587,15 +622,14 @@ function renderAdd(){
        '<span class="e">' + IC.grid + '</span><span class="n">Все</span></button>';
   h += "</div>";
 
-  /* Подсказка всегда в разметке, чтобы экран не дёргался: текст появляется,
-     только когда сумма набрана, а категория не выбрана. */
+  /* Подсказка живёт внутри подвала, чтобы отступы вокруг сетки категорий
+     остались одинаковыми сверху и снизу. */
   var fb = fallbackCat(A.kind);
   var fbName = fb ? fb.name : "";
-  h += '<div class="fbhint" id="a-fbhint">' +
+  h += '<div class="foot"><div class="fbhint" id="a-fbhint">' +
        (!A.cat && A.amt !== "" && fbName ? "без выбора запишется в «" + esc(fbName) + "»" : "") +
-       "</div>";
-
-  h += '<div class="foot"><button class="btn" id="a-save"' +
+       "</div>" +
+       '<button class="btn" id="a-save"' +
        (A.amt === "" ? " disabled" : "") + ">Сохранить</button></div>";
 
   /* Лента последних операций: сразу видно, что записалось, и можно поправить. */
@@ -653,7 +687,22 @@ function renderAdd(){
     A.kind = b.dataset.k; A.cat = null; renderAdd();
   };
 
-  el("a-date").onchange = function(){ A.date = this.value || today(); };
+  el("a-date").onchange = function(){
+    A.date = this.value || today();
+    el("a-datelbl").textContent = dateLabel(A.date);
+  };
+
+  /* Нажатие ловит вся плашка целиком, а не только поле внутри неё. */
+  el("a-datebtn").onclick = function(){
+    var d = el("a-date");
+    if (typeof d.showPicker === "function") {
+      try { d.showPicker(); return; } catch(e){}
+    }
+    d.style.pointerEvents = "auto";
+    d.focus();
+    d.click();
+    d.style.pointerEvents = "none";
+  };
   el("a-note").oninput = function(){ A.note = this.value; };
 
   el("a-cats").onclick = function(e){
