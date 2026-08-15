@@ -75,6 +75,29 @@ text-transform:uppercase;letter-spacing:.9px;margin-bottom:8px}
 font-variant-numeric:tabular-nums;display:block}
 .chip b.inc{color:var(--acc)}
 
+/* ---- сравнение с прошлым месяцем ---- */
+.cmp{font:500 13px var(--f);color:var(--mut);margin-top:9px;letter-spacing:.2px}
+.cmp.up{color:var(--red)}
+.cmp.down{color:var(--acc)}
+
+/* ---- график трат по дням ---- */
+.days{display:flex;align-items:flex-end;gap:2px;height:72px}
+.dbar{flex:1;min-width:0;height:100%;background:none;border:0;padding:0;
+display:flex;align-items:flex-end}
+.dbar i{display:block;width:100%;height:var(--hh);min-height:2px;
+background:var(--surface2);border-radius:2px}
+.dbar.zero i{height:2px;background:var(--line)}
+.dbar.top i{background:var(--acc)}
+.dbar:active i{background:var(--mut)}
+.dmarks{display:flex;justify-content:space-between;margin-top:8px;
+font:400 11px var(--f);color:var(--mut);font-variant-numeric:tabular-nums}
+
+/* ---- напоминание о резервной копии ---- */
+.nudge b{display:block;font:500 16px var(--f);margin-bottom:6px}
+.nudge p{font:400 13px/1.5 var(--f);color:var(--mut);margin-bottom:14px}
+.nrow{display:flex;gap:9px}
+.nrow .btn{margin:0;padding:12px;font-size:14px}
+
 /* ---- стопка расходов вместо кольца ---- */
 .stack{display:flex;gap:2px;height:10px;margin:2px 0 18px;
 background:var(--surface2);border-radius:5px;overflow:hidden}
@@ -137,6 +160,19 @@ font:400 14px var(--f);color:var(--tx);width:100%}
 .mnote input:focus{outline:none}
 .mnote input::placeholder{color:var(--mut);opacity:1}
 .mnote:focus-within{border-color:var(--acc)}
+
+/* ---- лента шаблонов ---- */
+.tpls{display:flex;gap:7px;flex:0 0 auto;overflow-x:auto;padding:14px 0 0;
+-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tpls::-webkit-scrollbar{display:none}
+.tpl{flex:none;display:flex;align-items:center;gap:7px;background:var(--surface);
+border:1px solid var(--line);border-radius:13px;padding:0 13px;height:42px;
+color:var(--tx);font:500 13px var(--f);white-space:nowrap}
+.tpl .te{font-size:15px;line-height:1}
+.tpl i{font-style:normal;color:var(--mut);font-variant-numeric:tabular-nums}
+.tpl:active{background:var(--surface2)}
+.tpl.add{padding:0 12px;color:var(--mut)}
+.tpl.add svg{width:18px;height:18px}
 
 /* ---- плитки категорий: только основные, остальные под кнопкой «Все» ---- */
 .cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;
@@ -224,7 +260,7 @@ margin-bottom:10px;letter-spacing:.1px}
 
 /* ---- шторки ---- */
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:flex-end;
-z-index:50;animation:fade .2s}
+z-index:200;animation:fade .2s}
 .sheet{width:100%;background:var(--bg);border-top:1px solid var(--line);
 border-radius:24px 24px 0 0;padding:6px 20px calc(20px + env(safe-area-inset-bottom));
 max-height:90dvh;overflow-y:auto;animation:up .3s cubic-bezier(.2,.9,.3,1)}
@@ -258,10 +294,38 @@ font-size:20px;padding:6px 0}
 .cols button.on::after{content:"";position:absolute;inset:-4px;
 border:2px solid var(--tx);border-radius:50%}
 
+/* ---- ввод кода: точки и клавиатура ---- */
+.pinnote{font:400 13px/1.5 var(--f);color:var(--mut);text-align:center;margin-bottom:18px}
+.dots{display:flex;justify-content:center;gap:14px;margin-bottom:26px}
+.dots i{width:12px;height:12px;border-radius:50%;background:none;
+border:1.5px solid var(--mut);transition:background .15s,border-color .15s}
+.dots i.on{background:var(--acc);border-color:var(--acc)}
+.dots.bad i{border-color:var(--red)}
+.dots.bad i.on{background:var(--red);border-color:var(--red)}
+.pinpad{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:16px}
+.pinpad button{background:var(--surface);border:1px solid var(--line);color:var(--tx);
+font:400 24px/1 var(--f);height:56px;border-radius:14px;display:grid;place-items:center;
+font-variant-numeric:tabular-nums}
+.pinpad button:active{background:var(--surface2)}
+.pinpad button svg{width:22px;height:22px}
+
+/* ---- экран блокировки ---- */
+#lock{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;
+align-items:center;justify-content:center;padding:24px;
+padding-bottom:calc(24px + env(safe-area-inset-bottom));transition:opacity .2s}
+#lock.off{opacity:0;pointer-events:none}
+.lockbox{width:100%;max-width:320px}
+.lockmark{width:56px;height:56px;margin:0 auto 16px;border-radius:16px;
+background:var(--acc);color:var(--accfg);display:grid;place-items:center;
+font:600 28px var(--f)}
+.lockbox h2{font:500 20px var(--f);text-align:center;margin-bottom:8px;letter-spacing:-.3px}
+.lkforgot{display:block;width:100%;background:none;border:0;color:var(--mut);
+font:400 13px var(--f);padding:10px}
+
 #toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));
 transform:translate(-50%,16px);background:var(--acc);color:var(--accfg);
 padding:12px 20px;border-radius:13px;font:600 14px var(--f);opacity:0;
-pointer-events:none;transition:.25s;z-index:99;max-width:88vw;text-align:center}
+pointer-events:none;transition:.25s;z-index:300;max-width:88vw;text-align:center}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -292,8 +356,8 @@ pointer-events:none;transition:.25s;z-index:99;max-width:88vw;text-align:center}
 var KEY = "budget_v1";
 
 var CUR = [
-  ["UAH","₴","Гривна"], ["RUB","₽","Рубль"], ["USD","$","Доллар"], ["EUR","€","Евро"],
-  ["KZT","₸","Тенге"], ["PLN","zł","Злотый"], ["GBP","£","Фунт"], ["GEL","₾","Лари"]
+  ["UAH","₴","Гривна"], ["USD","$","Доллар"], ["EUR","€","Евро"],
+  ["PLN","zł","Злотый"], ["CZK","Kč","Крона"]
 ];
 
 var PAL = ["#ff3b30","#ff9500","#ffcc00","#34c759","#00c7be","#30b0c7","#007aff","#5856d6",
@@ -407,8 +471,9 @@ function defaultCats(){
 }
 
 function defaultState(){
-  return { version:1, currency:"UAH", symbol:null, totalLimit:null,
-           categories: defaultCats(), tx: [] };
+  return { version:2, currency:"UAH", symbol:null, totalLimit:null,
+           categories: defaultCats(), tx: [],
+           templates: [], pin: null, lastBackup: null, backupSnooze: null };
 }
 
 var S;
@@ -421,6 +486,20 @@ function loadState(){
     if (!s || !Array.isArray(s.categories) || !Array.isArray(s.tx)) return defaultState();
     if (!s.currency) s.currency = "UAH";
     if (typeof s.totalLimit === "undefined") s.totalLimit = null;
+    /* Валюта из старой версии, которой больше нет в списке: возвращаем
+       к гривне, иначе символ молча превратился бы в чужой. */
+    if (!s.symbol) {
+      var known = false;
+      for (var i = 0; i < CUR.length; i++) if (CUR[i][0] === s.currency) known = true;
+      if (!known) s.currency = "UAH";
+    }
+    /* Поля, появившиеся во второй версии: подставляем их старым данным,
+       иначе приложение споткнётся на уже сохранённом budget_v1. */
+    if (!Array.isArray(s.templates)) s.templates = [];
+    if (typeof s.pin === "undefined") s.pin = null;
+    if (typeof s.lastBackup === "undefined") s.lastBackup = null;
+    if (typeof s.backupSnooze === "undefined") s.backupSnooze = null;
+    s.version = 2;
     return s;
   } catch(e){ return defaultState(); }
 }
@@ -436,6 +515,14 @@ function symbol(){
   if (S.symbol) return S.symbol;
   for (var i=0;i<CUR.length;i++) if (CUR[i][0] === S.currency) return CUR[i][1];
   return "₴";
+}
+
+/* Что показать в настройках строкой «Валюта». */
+function curInfo(){
+  if (S.symbol) return { name:"Свой символ", code:"задан вручную" };
+  for (var i=0;i<CUR.length;i++)
+    if (CUR[i][0] === S.currency) return { name:CUR[i][2], code:CUR[i][0] };
+  return { name:CUR[0][2], code:CUR[0][0] };
 }
 
 function fmt(n, withSym){
@@ -590,6 +677,117 @@ function catTile(c){
          '<span class="e">' + c.emoji + '</span><span class="n">' + esc(c.name) + "</span></button>";
 }
 
+/* ---------- Шаблоны частых трат ---------- */
+
+function tplById(id){
+  for (var i = 0; i < S.templates.length; i++)
+    if (S.templates[i].id === id) return S.templates[i];
+  return null;
+}
+
+/* Форма шаблона. При создании с экрана ввода подставляем то,
+   что уже набрано, — обычно ради этого шаблон и заводят. */
+function editTemplate(id){
+  var t = id ? tplById(id) : null;
+  var isNew = !t;
+  var d = t ? { name:t.name, amount:t.amount, kind:t.kind, categoryId:t.categoryId, note:t.note }
+            : { name:"", amount:parseAmt(A.amt) || "", kind:A.kind,
+                categoryId:A.cat || (fallbackCat(A.kind) || {}).id, note:A.note || "" };
+
+  function opts(kind){
+    return catsOf(kind).map(function(c){
+      return '<option value="' + c.id + '"' + (c.id === d.categoryId ? " selected" : "") + ">" +
+             c.emoji + " " + esc(c.name) + "</option>";
+    }).join("");
+  }
+
+  var h = '<div class="seg" id="tp-seg">' +
+          '<button class="sx' + (d.kind==="expense"?" on":"") + '" data-k="expense">Расход</button>' +
+          '<button class="si' + (d.kind==="income" ?" on":"") + '" data-k="income">Доход</button></div>' +
+          '<div style="height:16px"></div>' +
+          '<label class="f"><span>Название</span>' +
+          '<input id="tp-name" maxlength="24" placeholder="Например: Кофе" value="' + esc(d.name) + '"></label>' +
+          '<label class="f"><span>Сумма (' + esc(symbol()) + ')</span>' +
+          '<input id="tp-amt" type="text" inputmode="decimal" value="' +
+          (d.amount ? String(d.amount).replace(".", ",") : "") + '"></label>' +
+          '<label class="f"><span>Категория</span>' +
+          '<select id="tp-cat">' + opts(d.kind) + "</select></label>" +
+          '<label class="f"><span>Заметка</span>' +
+          '<input id="tp-note" maxlength="60" value="' + esc(d.note || "") + '"></label>' +
+          '<button class="btn" id="tp-ok">' + (isNew ? "Создать" : "Сохранить") + "</button>" +
+          (isNew ? "" : '<button class="btn r" id="tp-del">Удалить шаблон</button>') +
+          '<button class="btn g" id="tp-no">Отмена</button>';
+
+  openSheet(isNew ? "Новый шаблон" : "Шаблон", h, function(ov){
+    ov.querySelector("#tp-seg").onclick = function(e){
+      var b = e.target.closest("button[data-k]"); if (!b) return;
+      d.kind = b.dataset.k;
+      d.categoryId = (fallbackCat(d.kind) || {}).id;
+      ov.querySelectorAll("#tp-seg button").forEach(function(x){
+        x.classList.toggle("on", x.dataset.k === d.kind);
+      });
+      ov.querySelector("#tp-cat").innerHTML = opts(d.kind);
+    };
+    ov.querySelector("#tp-ok").onclick = function(){
+      var name = ov.querySelector("#tp-name").value.trim();
+      var amt  = parseAmt(ov.querySelector("#tp-amt").value);
+      if (!name) { toast("Введите название"); return; }
+      if (amt <= 0) { toast("Введите сумму"); return; }
+      var rec = { name:name, amount:amt, kind:d.kind,
+                  categoryId: ov.querySelector("#tp-cat").value,
+                  note: ov.querySelector("#tp-note").value.trim() };
+      if (isNew) { rec.id = uid(); S.templates.push(rec); }
+      else { t.name=rec.name; t.amount=rec.amount; t.kind=rec.kind;
+             t.categoryId=rec.categoryId; t.note=rec.note; }
+      saveState(); closeSheet(); renderAll();
+      toast(isNew ? "Шаблон создан" : "Шаблон сохранён");
+    };
+    if (!isNew) ov.querySelector("#tp-del").onclick = function(){
+      closeSheet();
+      confirmSheet("Удалить шаблон?", "«" + t.name + "» исчезнет с экрана ввода. " +
+        "Записанные по нему операции останутся.", "Удалить", true, function(){
+          S.templates = S.templates.filter(function(x){ return x.id !== id; });
+          saveState(); renderAll(); toast("Шаблон удалён");
+        });
+    };
+    ov.querySelector("#tp-no").onclick = closeSheet;
+  });
+}
+
+function templatesSheet(){
+  var h = "";
+  if (!S.templates.length) {
+    h += '<div class="hint" style="text-align:center;padding:4px 4px 18px">' +
+         "Шаблон — это готовая запись: название, сумма и категория. " +
+         "Нажали на него на экране ввода — трата записана.</div>";
+  } else {
+    h += '<div class="card" style="padding:2px 16px" id="tl-list">';
+    S.templates.forEach(function(t){
+      var c = catById(t.categoryId) || { emoji:"❓", color:"#8e8e93", name:"без категории" };
+      h += '<button class="row" data-tpl="' + t.id + '">' +
+           '<span class="e" style="background:' + c.color + '26">' + c.emoji + "</span>" +
+           '<div class="t"><b>' + esc(t.name) + "</b><small>" + esc(c.name) +
+           (t.note ? " · " + esc(t.note) : "") + "</small></div>" +
+           '<span class="v' + (t.kind === "expense" ? "" : " inc") + '">' +
+           (t.kind === "expense" ? "−" : "+") + " " + fmt(t.amount) + "</span>" +
+           '<span class="ch">' + IC.chev + "</span></button>";
+    });
+    h += "</div>";
+  }
+  h += '<button class="btn" id="tl-new">Создать шаблон</button>' +
+       '<button class="btn g" id="tl-no">Закрыть</button>';
+
+  openSheet("Шаблоны", h, function(ov){
+    var list = ov.querySelector("#tl-list");
+    if (list) list.onclick = function(e){
+      var b = e.target.closest("button[data-tpl]"); if (!b) return;
+      closeSheet(); editTemplate(b.dataset.tpl);
+    };
+    ov.querySelector("#tl-new").onclick = function(){ closeSheet(); editTemplate(null); };
+    ov.querySelector("#tl-no").onclick = closeSheet;
+  });
+}
+
 /* Полный список категорий — в шторке, чтобы не занимать главный экран. */
 function pickCategory(kind){
   var h = '<div class="cats all" id="p-cats">';
@@ -638,6 +836,17 @@ function renderAdd(){
        '<label class="mchip mnote">' + IC.note +
          '<input id="a-note" placeholder="заметка" value="' + esc(A.note) + '" maxlength="60">' +
        "</label></div>";
+
+  /* Лента шаблонов. Пустой список ничего не рисует — место не тратится. */
+  h += '<div class="tpls" id="a-tpls">';
+  S.templates.forEach(function(t){
+    var c = catById(t.categoryId) || { emoji:"❓" };
+    h += '<button class="tpl" data-tpl="' + t.id + '">' +
+         '<span class="te">' + c.emoji + "</span>" + esc(t.name) +
+         '<i>' + fmt(t.amount, false) + "</i></button>";
+  });
+  h += '<button class="tpl add" data-tpl="__new">' + IC.plus + "</button>";
+  h += "</div>";
 
   h += '<div class="cats" id="a-cats">';
   cats.forEach(function(c){ h += catTile(c); });
@@ -728,6 +937,13 @@ function renderAdd(){
   };
   el("a-note").oninput = function(){ A.note = this.value; };
 
+  el("a-tpls").onclick = function(e){
+    var b = e.target.closest("button[data-tpl]"); if (!b) return;
+    if (b.dataset.tpl === "__new") { editTemplate(null); return; }
+    var t = tplById(b.dataset.tpl); if (!t) return;
+    if (addTx(t.kind, t.amount, t.categoryId, today(), t.note)) renderAdd();
+  };
+
   el("a-cats").onclick = function(e){
     var b = e.target.closest("button[data-c]"); if (!b) return;
     if (b.dataset.c === "__all") { pickCategory(A.kind); return; }
@@ -750,24 +966,29 @@ function parseAmt(s){
   return isNaN(v) ? 0 : Math.round(v*100)/100;
 }
 
-function saveTx(){
-  var v = parseAmt(A.amt);
-  if (v <= 0) { toast("Введите сумму"); return; }
+/* Единственное место, где рождается операция: сюда ведут и обычное
+   сохранение с экрана, и запись по шаблону. */
+function addTx(kind, amount, categoryId, date, note){
+  if (amount <= 0) { toast("Введите сумму"); return false; }
 
-  var catId = A.cat;
-  if (!catId) {
-    var fb = fallbackCat(A.kind);
-    if (!fb) { toast("Сначала создайте категорию"); return; }
+  var catId = categoryId;
+  if (!catId || !catById(catId)) {
+    var fb = fallbackCat(kind);
+    if (!fb) { toast("Сначала создайте категорию"); return false; }
     catId = fb.id;
   }
 
-  S.tx.push({ id: uid(), amount: v, categoryId: catId, kind: A.kind,
-              date: A.date, note: A.note.trim(), createdAt: Date.now() });
+  S.tx.push({ id: uid(), amount: amount, categoryId: catId, kind: kind,
+              date: date || today(), note: (note || "").trim(), createdAt: Date.now() });
   saveState();
-  var name = catById(catId).name;
+  toast((kind === "expense" ? "− " : "+ ") + fmt(amount) + " · " + catById(catId).name);
+  return true;
+}
+
+function saveTx(){
+  if (!addTx(A.kind, parseAmt(A.amt), A.cat, A.date, A.note)) return;
   A.amt = ""; A.note = "";
   renderAdd();
-  toast((A.kind === "expense" ? "− " : "+ ") + fmt(v) + " · " + name);
 }
 
 /* ---------- Вкладка «Месяц» ---------- */
@@ -784,11 +1005,14 @@ function renderMonth(){
     '<button id="m-prev">' + IC.chevL + '</button><b>' + monthTitle(view) + "</b>" +
     '<button id="m-next"' + (view >= monthOf(today()) ? " disabled" : "") + ">" + IC.chev + "</button></div>";
 
+  h += backupCard();
+
   /* Герой экрана — баланс месяца крупно и тонко, под ним две сводки. */
   h += '<div class="hero">' +
     '<div class="big' + (bal < 0 ? " neg" : "") + '">' +
       (bal > 0 ? "+" : "") + fmt(bal, false) + "</div>" +
     '<div class="cap">баланс за ' + monthTitle(view).toLowerCase() + ", " + esc(symbol()) + "</div>" +
+    compareLine(eSum) +
     '<div class="chips">' +
       '<div class="chip"><span>Доходы</span><b class="inc">' + fmt(iSum) + "</b></div>" +
       '<div class="chip"><span>Расходы</span><b>' + fmt(eSum) + "</b></div>" +
@@ -828,6 +1052,8 @@ function renderMonth(){
   }).sort(function(a,b){ return b.v - a.v; });
 
   if (rows.length) {
+    h += daily(view);
+
     h += '<div class="sec">Расходы по категориям</div>';
     h += stack(rows, eSum);
     h += '<div class="card">';
@@ -891,14 +1117,112 @@ function renderMonth(){
 
   el("t-month").onclick = function(e){
     var b = e.target.closest("button[data-tx]");
-    if (b) editTx(b.dataset.tx);
+    if (b) { editTx(b.dataset.tx); return; }
+
+    var d = e.target.closest("button[data-day]");
+    if (d) {
+      var day = +d.dataset.day;
+      var iso = view + "-" + pad2(day);
+      var v = sum(txOfMonth(view).filter(function(t){
+        return t.kind === "expense" && t.date === iso;
+      }));
+      toast(day + " " + MONTHS2[parseInt(view.split("-")[1],10)-1] + " · " + fmt(v));
+      return;
+    }
   };
+
+  var nudge = el("m-nudge");
+  if (nudge) {
+    el("nu-do").onclick = exportJson;
+    el("nu-later").onclick = function(){
+      S.backupSnooze = Date.now() + 7 * DAY;
+      saveState(); renderMonth(); toast("Напомню через неделю");
+    };
+  }
 }
 
 function bindMonthNav(){
   el("m-prev").onclick = function(){ view = shiftMonth(view,-1); renderMonth(); };
   var n = el("m-next");
   if (!n.disabled) n.onclick = function(){ view = shiftMonth(view,1); renderMonth(); };
+}
+
+/* ---------- Сравнение, график по дням, напоминание о копии ---------- */
+
+/* Расходы прошлого месяца. Если записей не было — сравнивать не с чем. */
+function prevExpenses(mk){
+  var prev = txOfMonth(shiftMonth(mk, -1));
+  if (!prev.length) return null;
+  return sum(prev.filter(function(t){ return t.kind === "expense"; }));
+}
+
+var MONTHS_DAT = ["январю","февралю","марту","апрелю","маю","июню",
+                  "июлю","августу","сентябрю","октябрю","ноябрю","декабрю"];
+
+function compareLine(eSum){
+  var was = prevExpenses(view);
+  if (was === null || was <= 0) return "";
+  var prevMk = shiftMonth(view, -1);
+  var name = MONTHS_DAT[parseInt(prevMk.split("-")[1], 10) - 1];
+  var diff = Math.round((eSum - was) / was * 100);
+  if (diff === 0) return '<div class="cmp">расходы как в прошлом месяце</div>';
+  var up = diff > 0;
+  return '<div class="cmp ' + (up ? "up" : "down") + '">' +
+    (up ? "↑" : "↓") + " " + Math.abs(diff) + " % к " + name + "</div>";
+}
+
+/* Столбики трат по дням месяца. Высота — доля от самого затратного дня. */
+function daily(mk){
+  var p = mk.split("-"), year = +p[0], mon = +p[1];
+  var days = new Date(year, mon, 0).getDate();
+  var byDay = [], max = 0;
+  for (var d = 1; d <= days; d++) byDay[d] = 0;
+  txOfMonth(mk).forEach(function(t){
+    if (t.kind !== "expense") return;
+    byDay[+t.date.slice(8,10)] += t.amount;
+  });
+  for (var i = 1; i <= days; i++) if (byDay[i] > max) max = byDay[i];
+  if (max <= 0) return "";
+
+  var bars = "";
+  for (var n = 1; n <= days; n++) {
+    var v = byDay[n];
+    var pct = v > 0 ? Math.max(6, Math.round(v / max * 100)) : 0;
+    bars += '<button class="dbar' + (v === max ? " top" : "") + (v <= 0 ? " zero" : "") +
+            '" data-day="' + n + '" style="--hh:' + pct + '%"><i></i></button>';
+  }
+  var marks = "";
+  [1, 8, 15, 22, days].forEach(function(n){
+    marks += "<span>" + n + "</span>";
+  });
+  return '<div class="sec">По дням</div>' +
+         '<div class="card"><div class="days" id="m-days">' + bars + "</div>" +
+         '<div class="dmarks">' + marks + "</div></div>";
+}
+
+/* ---- напоминание о резервной копии ---- */
+
+var DAY = 86400000;
+
+function daysAgo(ts){ return Math.floor((Date.now() - ts) / DAY); }
+
+function backupDue(){
+  if (S.backupSnooze && Date.now() < S.backupSnooze) return false;
+  if (S.lastBackup) return daysAgo(S.lastBackup) >= 30;
+  return S.tx.length >= 20;
+}
+
+function backupCard(){
+  if (!backupDue()) return "";
+  var text = S.lastBackup
+    ? "Последняя копия была " + daysAgo(S.lastBackup) + " дн. назад."
+    : "Резервной копии ещё не было, а записей уже " + S.tx.length + ".";
+  return '<div class="card nudge" id="m-nudge">' +
+    "<b>Сделайте резервную копию</b>" +
+    "<p>" + text + " Данные хранятся только на этом телефоне: " +
+    "если удалить приложение или очистить Safari, восстановить их будет неоткуда.</p>" +
+    '<div class="nrow"><button class="btn" id="nu-do">Сделать копию</button>' +
+    '<button class="btn g" id="nu-later">Позже</button></div></div>';
 }
 
 /* Доли категорий одной горизонтальной полосой. Ширины задаются через
@@ -1090,31 +1414,81 @@ function deleteCategory(c){
 
 /* ---------- Вкладка «Настройки» ---------- */
 
-function renderSet(){
-  var h = "<h1>Настройки</h1>";
-
-  h += '<div class="sec">Валюта</div><div class="card" style="padding:2px 16px" id="s-cur">';
+/* Выбор валюты — в шторке, чтобы настройки не растягивались списком. */
+function currencySheet(){
+  var h = '<div class="card" style="padding:2px 16px" id="cs-list">';
   CUR.forEach(function(c){
     var on = S.currency === c[0] && !S.symbol;
     h += '<button class="row" data-cur="' + c[0] + '">' +
-         '<span class="e" style="background:var(--surface2);font-size:17px;font-weight:600">' + c[1] + "</span>" +
+         '<span class="e" style="background:var(--surface2);font:600 16px var(--f)">' + c[1] + "</span>" +
          '<div class="t"><b>' + c[2] + "</b><small>" + c[0] + "</small></div>" +
-         (on ? '<span class="ch" style="color:var(--acc)">' + IC.check + "</span>" : "") + "</button>";
+         (on ? '<span class="ch" style="color:var(--acc)">' + IC.check + "</span>" : "") +
+         "</button>";
   });
   h += "</div>";
-  h += '<label class="f"><span>Или свой символ валюты</span>' +
-       '<input id="s-sym" maxlength="4" placeholder="например, ₼" value="' + esc(S.symbol || "") +
+  h += '<label class="f"><span>Или свой символ</span>' +
+       '<input id="cs-sym" maxlength="4" placeholder="например, ₾" value="' + esc(S.symbol || "") +
        '" style="text-align:center"></label>';
+  h += '<button class="btn g" id="cs-no">Закрыть</button>';
+
+  openSheet("Валюта", h, function(ov){
+    function apply(){
+      saveState(); closeSheet(); renderAll(); toast("Валюта: " + symbol());
+    }
+    ov.querySelector("#cs-list").onclick = function(e){
+      var b = e.target.closest("button[data-cur]"); if (!b) return;
+      S.currency = b.dataset.cur; S.symbol = null; apply();
+    };
+    ov.querySelector("#cs-sym").onchange = function(){
+      var v = this.value.trim();
+      S.symbol = v || null; apply();
+    };
+    ov.querySelector("#cs-no").onclick = closeSheet;
+  });
+}
+
+function renderSet(){
+  var h = "<h1>Настройки</h1>";
+
+  var ci = curInfo();
+  h += '<div class="sec">Валюта</div><div class="card" style="padding:2px 16px">' +
+       '<button class="row" id="s-curbtn">' +
+       '<span class="e" style="background:var(--surface2);font:600 16px var(--f)">' +
+       esc(symbol()) + "</span>" +
+       '<div class="t"><b>' + esc(ci.name) + "</b><small>" + esc(ci.code) + "</small></div>" +
+       '<span class="ch">' + IC.chev + "</span></button></div>";
+
+  h += '<div class="sec">Быстрый ввод</div><div class="card" style="padding:2px 16px">' +
+       '<button class="row" id="s-tpl">' +
+       '<span class="e" style="background:var(--surface2)">⚡️</span>' +
+       '<div class="t"><b>Шаблоны</b><small>' +
+       (S.templates.length ? S.templates.length + " шт. на экране ввода" : "не созданы") +
+       "</small></div>" + '<span class="ch">' + IC.chev + "</span></button></div>";
 
   h += '<div class="sec">Общий лимит расходов на месяц</div>' +
        '<label class="f"><input id="s-lim" type="text" inputmode="decimal" placeholder="не задан" value="' +
        (S.totalLimit > 0 ? String(S.totalLimit).replace(".",",") : "") + '"></label>' +
        '<div class="hint">Показывается полосой на вкладке «Месяц». Оставьте пустым, чтобы отключить.</div>';
 
+  h += '<div class="sec">Защита</div><div class="card" style="padding:2px 16px">' +
+       '<button class="row" id="s-pin">' +
+       '<span class="e" style="background:var(--surface2)">' + (S.pin ? "🔒" : "🔓") + "</span>" +
+       '<div class="t"><b>Код-пароль</b><small>' +
+       (S.pin ? "включён" : "выключен") + "</small></div>" +
+       '<span class="ch">' + IC.chev + "</span></button></div>" +
+       '<div class="hint">Скрывает содержимое от посторонних глаз при открытии. ' +
+       "Это не шифрование: данные лежат в хранилище Safari, и тот, у кого есть доступ " +
+       "к разблокированному телефону, сможет прочитать их в обход кода.</div>";
+
   h += '<div class="sec">Данные</div>';
   h += '<button class="btn g" id="s-csv">Экспорт CSV · ' + monthTitle(view) + "</button>";
   h += '<button class="btn g" id="s-csva">Экспорт CSV · все операции</button>';
   h += '<button class="btn g" id="s-json">Резервная копия (JSON)</button>';
+  h += '<div class="hint" style="padding-bottom:10px">' +
+       (S.lastBackup
+         ? "Последняя копия: " + (daysAgo(S.lastBackup) === 0 ? "сегодня"
+             : daysAgo(S.lastBackup) + " дн. назад")
+         : "Копии ещё не было") + "</div>";
   h += '<button class="btn g" id="s-imp">Восстановить из копии</button>';
   h += '<div class="hint">Все данные хранятся только на этом телефоне и никуда не отправляются. ' +
        "Синхронизации между устройствами нет — раз в месяц делайте резервную копию, " +
@@ -1132,16 +1506,9 @@ function renderSet(){
 
   el("t-set").innerHTML = h;
 
-  el("s-cur").onclick = function(e){
-    var b = e.target.closest("button[data-cur]"); if (!b) return;
-    S.currency = b.dataset.cur; S.symbol = null;
-    saveState(); renderAll(); toast("Валюта: " + symbol());
-  };
-  el("s-sym").onchange = function(){
-    var v = this.value.trim();
-    S.symbol = v || null;
-    saveState(); renderAll(); toast("Валюта: " + symbol());
-  };
+  el("s-curbtn").onclick = currencySheet;
+  el("s-tpl").onclick = templatesSheet;
+  el("s-pin").onclick = pinSettings;
   el("s-lim").onchange = function(){
     var v = this.value.trim() ? parseAmt(this.value) : 0;
     S.totalLimit = v > 0 ? v : null;
@@ -1194,8 +1561,12 @@ function exportCsv(mk){
 }
 
 function exportJson(){
-  var name = "финансы-копия-" + today() + ".json";
+  var name = "баланс-копия-" + today() + ".json";
   share(name, JSON.stringify(S), "application/json");
+  S.lastBackup = Date.now();
+  S.backupSnooze = null;
+  saveState();
+  renderMonth(); renderSet();
 }
 
 function share(name, text, mime){
@@ -1265,6 +1636,136 @@ function importSheet(){
     });
 }
 
+/* ---------- Код-пароль ----------
+   Код хранится хешем, чтобы не лежать открытым текстом в файле резервной
+   копии. Это защита от чужих глаз, а не шифрование: содержимое
+   localStorage остаётся доступным тому, у кого есть доступ к устройству. */
+
+function pinHash(code){
+  var h = 5381;
+  for (var i = 0; i < code.length; i++) h = ((h * 33) ^ code.charCodeAt(i)) >>> 0;
+  return "h" + h.toString(36);
+}
+
+/* Общая шторка ввода кода: подпись, точки и своя цифровая клавиатура. */
+function askPin(title, note, onDone){
+  var code = "";
+  var h = '<p class="pinnote">' + esc(note) + "</p>" +
+          '<div class="dots" id="pk-dots">' +
+          "<i></i><i></i><i></i><i></i></div>" +
+          '<div class="pinpad" id="pk-pad">';
+  ["1","2","3","4","5","6","7","8","9","","0","⌫"].forEach(function(k){
+    h += k === "" ? "<span></span>"
+       : '<button data-k="' + k + '">' + (k === "⌫" ? IC.back : k) + "</button>";
+  });
+  h += "</div>" + '<button class="btn g" id="pk-no">Отмена</button>';
+
+  var ov = openSheet(title, h, function(ov){
+    function paint(bad){
+      var dots = ov.querySelectorAll("#pk-dots i");
+      for (var i = 0; i < 4; i++) dots[i].className = i < code.length ? "on" : "";
+      ov.querySelector("#pk-dots").classList.toggle("bad", !!bad);
+    }
+    ov.querySelector("#pk-pad").onclick = function(e){
+      var b = e.target.closest("button[data-k]"); if (!b) return;
+      var k = b.dataset.k;
+      if (k === "⌫") code = code.slice(0, -1);
+      else if (code.length < 4) code += k;
+      paint(false);
+      if (code.length === 4) {
+        var entered = code;
+        setTimeout(function(){
+          if (onDone(entered) === false) { code = ""; paint(true);
+            setTimeout(function(){ paint(false); }, 600); }
+        }, 120);
+      }
+    };
+    ov.querySelector("#pk-no").onclick = closeSheet;
+  });
+  return ov;
+}
+
+function pinSettings(){
+  if (!S.pin) {
+    askPin("Новый код", "Придумайте код из четырёх цифр.", function(first){
+      closeSheet();
+      askPin("Повторите код", "Введите тот же код ещё раз.", function(second){
+        if (second !== first) { toast("Коды не совпали"); return false; }
+        closeSheet();
+        confirmSheet("Включить код-пароль?",
+          "Восстановить забытый код нельзя — останется только стереть данные " +
+          "и восстановить их из резервной копии. Сделайте копию заранее.",
+          "Включить", false, function(){
+            S.pin = pinHash(first); saveState(); renderSet(); toast("Код-пароль включён");
+          });
+      });
+    });
+  } else {
+    askPin("Выключить код", "Введите текущий код.", function(code){
+      if (pinHash(code) !== S.pin) return false;
+      S.pin = null; saveState(); closeSheet(); renderSet(); toast("Код-пароль выключен");
+    });
+  }
+}
+
+/* Экран блокировки поверх всего приложения. */
+function lockScreen(){
+  var code = "";
+  var lock = document.createElement("div");
+  lock.id = "lock";
+  var pad = "";
+  ["1","2","3","4","5","6","7","8","9","","0","⌫"].forEach(function(k){
+    pad += k === "" ? "<span></span>"
+         : '<button data-k="' + k + '">' + (k === "⌫" ? IC.back : k) + "</button>";
+  });
+  lock.innerHTML =
+    '<div class="lockbox">' +
+      '<div class="lockmark">₴</div>' +
+      "<h2>Баланс</h2>" +
+      '<p class="pinnote">Введите код</p>' +
+      '<div class="dots" id="lk-dots"><i></i><i></i><i></i><i></i></div>' +
+      '<div class="pinpad" id="lk-pad">' + pad + "</div>" +
+      '<button class="lkforgot" id="lk-forgot">Не помню код</button>' +
+    "</div>";
+  document.body.appendChild(lock);
+
+  function paint(bad){
+    var dots = lock.querySelectorAll("#lk-dots i");
+    for (var i = 0; i < 4; i++) dots[i].className = i < code.length ? "on" : "";
+    lock.querySelector("#lk-dots").classList.toggle("bad", !!bad);
+  }
+
+  lock.querySelector("#lk-pad").onclick = function(e){
+    var b = e.target.closest("button[data-k]"); if (!b) return;
+    var k = b.dataset.k;
+    if (k === "⌫") code = code.slice(0, -1);
+    else if (code.length < 4) code += k;
+    paint(false);
+    if (code.length === 4) {
+      if (pinHash(code) === S.pin) {
+        lock.classList.add("off");
+        setTimeout(function(){ lock.remove(); }, 220);
+      } else {
+        code = ""; paint(true);
+        setTimeout(function(){ paint(false); }, 600);
+      }
+    }
+  };
+
+  lock.querySelector("#lk-forgot").onclick = function(){
+    confirmSheet("Код восстановить нельзя",
+      "Единственный выход — стереть все данные приложения и восстановить их " +
+      "из файла резервной копии, если он у вас есть.",
+      "Стереть всё", true, function(){
+        confirmSheet("Точно стереть?", "Все операции и категории будут удалены безвозвратно.",
+          "Да, стереть", true, function(){
+            localStorage.removeItem(KEY);
+            location.reload();
+          });
+      });
+  };
+}
+
 /* ---------- Навигация ---------- */
 
 var tab = "add";
@@ -1298,6 +1799,7 @@ S = loadState();
 saveState();
 renderAll();
 go("add");
+if (S.pin) lockScreen();
 </script>
 </body>
 </html>
